@@ -33,6 +33,10 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:latest
+        
+    - name: Decode KUBECONFIG
+      run: echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
+      shell: bash
 
     - name: Deploy to Kubernetes
       env:
