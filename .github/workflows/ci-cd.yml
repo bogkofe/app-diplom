@@ -33,9 +33,16 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:latest
-        
+
+    - name: Create kubeconfig file
+      run: |
+        echo "${{ secrets.KUBECONFIG1 }}" > kubeconfig
+        echo "${{ secrets.KUBECONFIG2 }}" >> kubeconfig
+        echo "${{ secrets.KUBECONFIG3 }}" >> kubeconfig
+        echo "${{ secrets.KUBECONFIG4 }}" >> kubeconfig
+
     - name: Deploy to Kubernetes
       env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
+        KUBECONFIG: ${{ github.workspace }}/kubeconfig
       run: |
         kubectl set image deployment/nginx-deployment nginx=${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:latest --insecure-skip-tls-verify
