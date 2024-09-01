@@ -32,7 +32,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:${{ github.sha }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:${{ github.ref_name }}
 
     - name: Create kubeconfig file
       run: |
@@ -45,4 +45,4 @@ jobs:
       env:
         KUBECONFIG: ${{ github.workspace }}/kubeconfig
       run: |
-        kubectl set image deployment/nginx-deployment nginx=${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:${{ github.sha }} --insecure-skip-tls-verify
+        kubectl set image deployment/nginx-deployment nginx=${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:${{ github.ref_name }} --insecure-skip-tls-verify
