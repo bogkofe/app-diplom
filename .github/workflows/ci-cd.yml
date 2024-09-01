@@ -38,4 +38,4 @@ jobs:
       env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
       run: |
-        kubectl set image deployment/nginx-deployment nginx=${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:latest
+        kubectl set image deployment/nginx-deployment nginx=${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:latest --insecure-skip-tls-verify
