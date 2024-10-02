@@ -30,9 +30,9 @@ jobs:
         context: .
         push: true
         tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ github.sha }} 
-          ${{ secrets.DOCKERHUB_USERNAME }}/app:latest            
-          ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ github.ref_name }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:${{ github.sha }} 
+          ${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:latest            
+          ${{ secrets.DOCKERHUB_USERNAME }}/app-nginx:${{ github.ref_name }}
 
   deploy:
     runs-on: ubuntu-latest
